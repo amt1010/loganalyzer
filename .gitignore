@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual environment
+venv/
+.venv/
+
+# IDE
+.idea/
+
+# Runtime data (uploaded logs, DuckDB database, WAL files)
+data/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
