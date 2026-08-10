@@ -6,7 +6,7 @@ DB_PATH = "data/diagnostics.duckdb"
 
 def init_db():
 
-    print("🚀 init_db() started")
+    print("init_db() started")
 
     with duckdb.connect(DB_PATH) as conn:
         conn.execute("""
@@ -23,7 +23,7 @@ def init_db():
         )
         """)
 
-    print("✅ events table created (or already exists)")
+    print("events table created (or already exists)")
 
 
 def insert_event(
