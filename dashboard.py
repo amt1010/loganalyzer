@@ -35,9 +35,8 @@ if st.button("Analyze"):
 st.header("📊 Insights")
 
 try:
-    conn = duckdb.connect("data/diagnostics.duckdb")
-
-    df = conn.execute("SELECT * FROM events").df()
+    with duckdb.connect("data/diagnostics.duckdb") as conn:
+        df = conn.execute("SELECT * FROM events").df()
 
     if len(df) == 0:
         st.warning("No data yet")

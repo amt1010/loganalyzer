@@ -3,11 +3,10 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
 
 def cluster_failures():
-    conn = duckdb.connect("data/diagnostics.duckdb")
-
-    df = conn.execute("""
-        SELECT diagnosis FROM events
-    """).df()
+    with duckdb.connect("data/diagnostics.duckdb") as conn:
+        df = conn.execute("""
+            SELECT diagnosis FROM events
+        """).df()
 
     if len(df) < 3:
         return {"message": "Not enough data for clustering"}

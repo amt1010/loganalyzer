@@ -1,16 +1,15 @@
 import duckdb
 
 def detect_anomalies():
-    conn = duckdb.connect("data/diagnostics.duckdb")
-
-    df = conn.execute("""
-        SELECT 
-            date_trunc('minute', timestamp) AS minute,
-            COUNT(*) AS count
-        FROM events
-        GROUP BY minute
-        ORDER BY minute
-    """).df()
+    with duckdb.connect("data/diagnostics.duckdb") as conn:
+        df = conn.execute("""
+            SELECT
+                date_trunc('minute', timestamp) AS minute,
+                COUNT(*) AS count
+            FROM events
+            GROUP BY minute
+            ORDER BY minute
+        """).df()
 
     if len(df) < 5:
         return {"message": "Not enough data for anomaly detection"}
